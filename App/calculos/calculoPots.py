@@ -4,7 +4,7 @@ def calcular_pots_seq_1(df):
     print('\t\tCalculando das Potências utilizando a Seq+')
     V_seq = df['V_Seq_Pos_(V)']
     I_seq = df['I_Seq_Pos_(A)']
-    print(df.columns)
+
     # Calculando a potência ativa (P = V * I * cos(theta))
     cos_theta = np.cos(np.radians(df['V_Seq_Pos_(graus)'] - df['I_Seq_Pos_(graus)']))
     pot_ativa_seq_pos = 3 * V_seq * I_seq * cos_theta / 1000000  # dividido por 1.000.000 para obter em MW

@@ -46,6 +46,7 @@ def calculos(df, config):
     elif 'IA_mod_(A)' in df.columns and 'IB_mod_(A)' in df.columns and 'IC_mod_(A)' in df.columns:
         print('\t\tÉ possível calcular Corrente de Seq+')
         tipo= tipo+'_corrente'
+        print(f'\tCalculando dados')
         resposta = calcular_sequencia_positiva_dataframe(df, config,tipo)  # Caso o tipo tenha tensão e corrente, iremos calcular a pot ativa também
         
     else:
