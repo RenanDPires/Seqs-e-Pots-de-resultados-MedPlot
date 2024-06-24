@@ -1,4 +1,4 @@
-# Seqs-e-Pots-de-resultados-MedPlot
+# Tensões e Correntes de Seq+ além de Potências calculadas pelas Seq+ e pelas somas das potências em cada fase
 Projeto 100% em python com arquivo de configuração em JSON;
 
 Para usar certinho, também é necessário que tenhamos consultas no padrão MedPlot;
