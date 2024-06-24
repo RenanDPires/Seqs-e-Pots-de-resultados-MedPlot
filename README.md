@@ -1,4 +1,4 @@
-# Seqs-e-Plots-de-resultados-MedPlot
+# Seqs-e-Pots-de-resultados-MedPlot
 Projeto 100% em python com arquivo de configuração em JSON;
 
 Para usar certinho, também é necessário que tenhamos consultas no padrão MedPlot;
