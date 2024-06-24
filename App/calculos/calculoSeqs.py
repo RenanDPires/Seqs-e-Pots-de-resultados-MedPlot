@@ -84,7 +84,11 @@ def calcular_sequencia_positiva_dataframe(df, config, tipo):
             
             result_tensoes_seq_1.append(result_row)
         result_tensoes_seq_1 = pd.DataFrame(result_tensoes_seq_1)
-        print('\t\tCalculo da Tensão de Seq+ terminada')
+        result_tensoes_seq_1['V_Seq_Pos_(V)'] = result_tensoes_seq_1['V_Seq_Pos_(V)'].astype(float)
+        result_tensoes_seq_1['V_Seq_Pos_(graus)'] = result_tensoes_seq_1['V_Seq_Pos_(graus)'].astype(float)
+
+    
+    
     
     if 'corrente' in tipo:
         result_correntes_seq_1 = []
@@ -106,7 +110,9 @@ def calcular_sequencia_positiva_dataframe(df, config, tipo):
             
             result_correntes_seq_1.append(result_row)
         result_correntes_seq_1 = pd.DataFrame(result_correntes_seq_1)
-        print('\t\tCalculo da Corrente de Seq+ terminada')
+        result_correntes_seq_1['I_Seq_Pos_(A)'] = result_correntes_seq_1['I_Seq_Pos_(A)'].astype(float)
+        result_correntes_seq_1['I_Seq_Pos_(graus)'] = result_correntes_seq_1['I_Seq_Pos_(graus)'].astype(float)
+
 
     val_tensoes= 'result_tensoes_seq_1' in locals()
     val_correntes= 'result_correntes_seq_1' in locals()
@@ -118,6 +124,25 @@ def calcular_sequencia_positiva_dataframe(df, config, tipo):
         df_pot_3_fases = calcular_pots_3_fases(df)
 
         df_final = pd.merge(df_pot_seq_1, df_pot_3_fases, on='Tempo_(SOC)', how='inner')
+
+        # Obtendo o nome das colunas
+        colunas = list(df_final.columns)
+
+        # Mapeando as colunas que serão movidas para as novas posições desejadas
+        movimentos = {
+            'Pot. Ativa 3 fases (MW)': 7,
+            'Pot. Reativa 3 fases (MVAr)': 8
+        }
+
+        # Realizando os movimentos das colunas
+        for coluna, nova_posicao in movimentos.items():
+            indice_atual = colunas.index(coluna)
+            colunas.insert(nova_posicao, colunas.pop(indice_atual))
+
+        # Recriando o DataFrame com a nova ordem das colunas
+        df_final = df_final[colunas]
+
+
     else:
         if 'result_tensoes_seq_1' in locals():
             df_final= result_tensoes_seq_1
@@ -127,6 +152,8 @@ def calcular_sequencia_positiva_dataframe(df, config, tipo):
             
     # Criar um DataFrame a partir da lista de resultados
 
-    print(df_final)
+    df_final['Tempo_(SOC)'] = df_final['Tempo_(SOC)'].apply(lambda x: '{:.5f}'.format(x))
+
+    print('\tCálculos finalizados\n')
 
     return df_final

@@ -1,5 +1,4 @@
 import os
-import shutil
 
 def criar_pasta(pasta_consulta, pasta_resultado):
     # Extrair o nome da nova pasta do caminho da pasta de consulta

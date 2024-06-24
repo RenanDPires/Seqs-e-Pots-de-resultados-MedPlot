@@ -1,11 +1,10 @@
-import pandas as pd
 import numpy as np
 
 def calcular_pots_seq_1(df):
-    
+    print('\t\tCalculando das Potências utilizando a Seq+')
     V_seq = df['V_Seq_Pos_(V)']
     I_seq = df['I_Seq_Pos_(A)']
-
+    print(df.columns)
     # Calculando a potência ativa (P = V * I * cos(theta))
     cos_theta = np.cos(np.radians(df['V_Seq_Pos_(graus)'] - df['I_Seq_Pos_(graus)']))
     pot_ativa_seq_pos = 3 * V_seq * I_seq * cos_theta / 1000000  # dividido por 1.000.000 para obter em MW
@@ -17,11 +16,15 @@ def calcular_pots_seq_1(df):
 
     # Adicionando as colunas de potência ativa e reativa ao DataFrame
     df['Pot. Ativa Seq+ (MW)'] = pot_ativa_seq_pos
-    df['Pot. Reativa Seq+ (MVAR)'] = pot_reativa_seq_pos
+    df['Pot. Reativa Seq+ (MVAr)'] = pot_reativa_seq_pos
+
+    df['Pot. Ativa Seq+ (MW)'] = df['Pot. Ativa Seq+ (MW)'].astype(float)
+    df['Pot. Reativa Seq+ (MVAr)'] = df['Pot. Reativa Seq+ (MVAr)'].astype(float)
 
     return df
 
 def calcular_pots_3_fases(df):
+    print('\t\tCalculando das Potências utilizando as potências por fase')
     # Calculando o fator de potência (cos(theta)) para cada fase
     cos_theta_A = np.cos(np.radians(df['VA_ang_(graus)'] - df['IA_ang_(graus)']))
     cos_theta_B = np.cos(np.radians(df['VB_ang_(graus)'] - df['IB_ang_(graus)']))
@@ -50,6 +53,9 @@ def calcular_pots_3_fases(df):
 
     # Adicionando as colunas de potência ativa e reativa ao DataFrame
     df['Pot. Ativa 3 fases (MW)'] = P_total
-    df['Pot. Reativa 3 fases (MVAR)'] = Q_total
+    df['Pot. Reativa 3 fases (MVAr)'] = Q_total
+
+    df['Pot. Ativa 3 fases (MW)'] = df['Pot. Ativa 3 fases (MW)'].astype(float)
+    df['Pot. Reativa 3 fases (MVAr)'] = df['Pot. Reativa 3 fases (MVAr)'].astype(float)
 
     return df

@@ -1,6 +1,5 @@
 import os
 import json
-#from App.calculos.calculoSeqs import 
 from App.calculos.calculoSeqs import calcular_sequencia_positiva_dataframe
 from App.leitura_salvamento.txt_reader import ler_txt
 from App.leitura_salvamento.excel_saver import salvar_excel
@@ -13,7 +12,6 @@ def main(input, output, config, padrao_nome_arquivo_final):
     
 
 def carregar_configuracoes(caminho_arquivo):
-    print('Carregando configuração')
     with open(caminho_arquivo, 'r') as arquivo:
         configuracoes = json.load(arquivo)
     print('Configuração carregada')
@@ -25,10 +23,11 @@ def data_handler(input, output, config, padrao_nome_arquivo_final):
     for txt in arquivos_txt:
         print(f'Lendo arquivo: \t {txt}')
         df= ler_txt(input,txt)
+        
         resultado= calculos(df, config)
-
-        nome_arquivo= padrao_nome_arquivo_final+'_'+txt.replace('.txt', '.xlsx')
-        salvar_excel(resultado, output, nome_arquivo)
+        if not isinstance(resultado, str):
+            nome_arquivo= padrao_nome_arquivo_final+'_'+txt.replace('.txt', '.xlsx')
+            salvar_excel(resultado, output, nome_arquivo)
 
 def calculos(df, config):
     tipo=''
@@ -44,6 +43,10 @@ def calculos(df, config):
         print(f'\tCalculando dados')
         resposta = calcular_sequencia_positiva_dataframe(df, config,tipo)  # Caso o tipo tenha tensão e corrente, iremos calcular a pot ativa também
     
+    elif 'IA_mod_(A)' in df.columns and 'IB_mod_(A)' in df.columns and 'IC_mod_(A)' in df.columns:
+        print('\t\tÉ possível calcular Corrente de Seq+')
+        tipo= tipo+'_corrente'
+        resposta = calcular_sequencia_positiva_dataframe(df, config,tipo)  # Caso o tipo tenha tensão e corrente, iremos calcular a pot ativa também
         
     else:
         print('Este terminal não permite cálculos')
@@ -59,7 +62,7 @@ if __name__ == "__main__":
     configuracoes = carregar_configuracoes(caminho_config_json)
 
     # Acesso às variáveis de configuração
-    pasta_consulta = r'C:\Users\renan\OneDrive\Documentos\MedPlot - Dados\20240608_174800_174859_60_OpenPDC_ONS_RJ_14_01_24'
+    pasta_consulta = r'D:\Projetos\Seq+ e Pots - MedPlot\Seqs-e-Pots-de-resultados-MedPlot\Consultas\20240617_193000_193059_120_OH2_ONS_SEPPMU_120fps_08_05_24'
     pasta_resultado = r'D:\Projetos\Seq+ e Pots - MedPlot\Seqs-e-Pots-de-resultados-MedPlot\Resultados'
     padrao_nome_arquivo_final = configuracoes['PADRAO_NOME_ARQUIVO_FINAL']
     config_file = configuracoes
