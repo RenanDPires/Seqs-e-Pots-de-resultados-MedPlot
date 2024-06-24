@@ -1,0 +1,26 @@
+{
+  "PADRAO_NOME_ARQUIVO_FINAL": "Seqs+Pots",
+  
+  
+  "tensoes": {
+    "columns": {
+      "VA_mod_(V)": "V_a_mag",
+      "VA_ang_(graus)": "V_a_angle",
+      "VB_mod_(V)": "V_b_mag",
+      "VB_ang_(graus)": "V_b_angle",
+      "VC_mod_(V)": "V_c_mag",
+      "VC_ang_(graus)": "V_c_angle"
+    }
+  },
+  "correntes": {
+    "columns": {
+      "IA_mod_(A)": "I_a_mag",
+      "IA_ang_(graus)": "I_a_angle",
+      "IB_mod_(A)": "I_b_mag",
+      "IB_ang_(graus)": "I_b_angle",
+      "IC_mod_(A)": "I_c_mag",
+      "IC_ang_(graus)": "I_c_angle"
+    }
+  }
+}
+  
