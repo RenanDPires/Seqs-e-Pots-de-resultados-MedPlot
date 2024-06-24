@@ -6,11 +6,11 @@ Para usar certinho, também é necessário que tenhamos consultas no padrão Med
 Módulos nececessários: json, numpy, pandas, math, cmath e os .
 
 ## Ajustes para execução
-Necessário ajustar diretórios da pasta_consulta e pasta_resultado;
+Necessário ajustar diretórios da pasta_consulta e pasta_resultado ao fim do arquivo main.py;
 
 Onde, pasta_consulta é a pasta com os arquivos .txt objetivados;
 
-E a pasta_resultado é a pasta onde esse processamento vai ser salvo.
+E a pasta_resultado é a pasta de salvamento dos dados originais+calculados.
 
 
 Nessa build, temos as pastas Consultas e Resultados no projeto e já setados. -- Sinta-se livre para ajustar às suas necessidades
