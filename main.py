@@ -63,8 +63,8 @@ if __name__ == "__main__":
     configuracoes = carregar_configuracoes(caminho_config_json)
 
     # Acesso às variáveis de configuração
-    pasta_consulta = r'C:\Users\renan\OneDrive\Área de Trabalho\OneDrive-2024-06-24\20221208_142230_142329_60_OpenPDC_ONS_BSB_10_15_22'
-    pasta_resultado = r'D:\Projetos\Seq+ e Pots - MedPlot\Seqs-e-Pots-de-resultados-MedPlot\Resultados' # Pasta raiz do resultado final
+    pasta_consulta = r'Consultas\20240617_193000_193059_120_OH2_ONS_SEPPMU_120fps_08_05_24' # Pasta específica do bloco de dados .txt
+    pasta_resultado = r'Resultados' # Pasta raiz do resultado final
     padrao_nome_arquivo_final = configuracoes['PADRAO_NOME_ARQUIVO_FINAL'] # prefixo padrão na nomenclatura do arquivo
     config_file = configuracoes
 

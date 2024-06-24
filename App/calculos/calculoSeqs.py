@@ -145,10 +145,10 @@ def calcular_sequencia_positiva_dataframe(df, config, tipo):
 
     else:
         if 'result_tensoes_seq_1' in locals():
-            df_final= result_tensoes_seq_1
+            df_final= pd.merge(result_tensoes_seq_1, df, on='Tempo_(SOC)', how='inner')
 
         if 'result_correntes_seq_1' in locals():
-            df_final= result_correntes_seq_1
+            df_final= pd.merge(result_correntes_seq_1, df, on='Tempo_(SOC)', how='inner')
             
     # Criar um DataFrame a partir da lista de resultados
 
