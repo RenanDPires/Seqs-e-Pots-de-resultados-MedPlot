@@ -13,4 +13,4 @@ Onde, pasta_consulta é a pasta com os arquivos .txt objetivados;
 E a pasta_resultado é a pasta de salvamento dos dados originais+calculados.
 
 
-Nessa build, temos as pastas Consultas e Resultados no projeto e já setados. -- Sinta-se livre para ajustar às suas necessidades
+Nessa build, temos as pastas Consultas/...(pasta_consulta) e Resultados(pasta_resultado) setadas como input e output respectivamente. -- Sinta-se livre para ajustar às suas necessidades
