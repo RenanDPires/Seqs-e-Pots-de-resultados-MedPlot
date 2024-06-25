@@ -3,7 +3,7 @@ Projeto 100% em python com arquivo de configuração em JSON;
 
 Para usar certinho, também é necessário que tenhamos consultas no padrão MedPlot;
 
-Módulos nececessários: json, numpy, pandas, math, cmath e os .
+Módulos necessários: json, numpy, pandas, math, cmath e os .
 
 ## Ajustes para execução
 Necessário ajustar diretórios da pasta_consulta e pasta_resultado ao fim do arquivo main.py;
